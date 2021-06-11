@@ -1,0 +1,43 @@
+1st Level:
+----------------------
+1. TF:
+    ☐ Jenkins server
+    ☐ Build server
+    ☐ Web-server
+2. Setup Jenkins server Manually:
+    ☐ setup server
+    ☐ setup pipeline jobs
+    ☐ setup build server
+    ☐ setup web-server
+
+2nd Level:
+1st + :
+1. Ansible installs:
+    ☐ Jenkins
+    ☐ Build server
+    ☐ Web-server
+
+-------------
+
+Tasks phase 1:
+================
+1. Terraform - 3 servers:
+    ☐ free tier
+    ☐ public IP
+    ☐ ALB -> Jenkins
+    ☐ ALB -> web-server: install docker
+    ☐ Jenins slave -> Build server
+    add user_data for servers using terraform (google howto):
+        ☐ yum update
+        ☐ yum install
+                    ☐ Jenkins java-coretto
+                    ☐ jenkis-slave java-coretto docker
+                    ☐ docker
+    ☐ route53 - 2 records to alb
+    ☐ ACM - 2 certificates
+
+*2. VCS - github:
+    ✔ application @done(21-06-11 21:32)
+    ✔ iac @done(21-06-11 21:32)
+    ☐ configuration
+☐ Add CI CD diagramm
