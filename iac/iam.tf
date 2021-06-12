@@ -1,10 +1,10 @@
 resource "aws_iam_instance_profile" "ec2_ssm_profile" {
   name = "ec2_ssm_profile"
-  role = aws_iam_role.role.name
+  role = aws_iam_role.ssm-role.name
 }
 
-resource "aws_iam_role" "role" {
-  name = "test_role"
+resource "aws_iam_role" "ssm-role" {
+  name = "ssm-role"
   path = "/"
 
   assume_role_policy = <<EOF
@@ -25,8 +25,8 @@ EOF
 }
 
 resource "aws_iam_policy" "policy" {
-  name        = "test-policy"
-  description = "A test policy"
+  name        = "ssm-policy"
+  description = "ssm-policy"
 
   policy = <<EOF
 {
@@ -78,7 +78,7 @@ resource "aws_iam_policy" "policy" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "test-attach" {
-  role       = aws_iam_role.role.name
+resource "aws_iam_role_policy_attachment" "attach" {
+  role       = aws_iam_role.ssm-role.name
   policy_arn = aws_iam_policy.policy.arn
 }

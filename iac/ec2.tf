@@ -1,98 +1,58 @@
-resource "aws_instance" "pet-clinic" {
+resource "aws_instance" "jenkins-server" {
   ami                         = "ami-043097594a7df80ec"
   instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.pet-clinic-sn.id
+  subnet_id                   = aws_subnet.subnet_pbl1.id
   key_name                    = "lab"
-  vpc_security_group_ids      = [aws_security_group.petclinic-sg.id]
+  vpc_security_group_ids      = [aws_security_group.jenkins-ec2-sg.id]
   associate_public_ip_address = true
   iam_instance_profile        = aws_iam_instance_profile.ec2_ssm_profile.name
-
+  user_data                   = file("config/user_data_jenkins.sh")
   tags = {
-    Name = "Pet-clinic"
+    Name = "jenkins"
   }
 }
 
-resource "aws_iam_instance_profile" "ec2_ssm_profile" {
-  name = "ec2_ssm_profile"
-  role = aws_iam_role.role.name
-}
+//resource "aws_instance" "web-server" {
+//  ami                         = "ami-043097594a7df80ec"
+//  instance_type               = "t2.micro"
+//  subnet_id                   = aws_subnet.subnet_pbl1.id
+//  key_name                    = "lab"
+//  vpc_security_group_ids      = [aws_security_group.web-sg.id]
+//  associate_public_ip_address = true
+//  iam_instance_profile        = aws_iam_instance_profile.ec2_ssm_profile.name
+//  user_data                   = file("config/user_data_web_server.sh")
+//  tags = {
+//    Name = "web-server"
+//  }
+//}
 
-resource "aws_iam_role" "role" {
-  name = "test_role"
-  path = "/"
 
-  assume_role_policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": "sts:AssumeRole",
-            "Principal": {
-               "Service": "ec2.amazonaws.com"
-            },
-            "Effect": "Allow",
-            "Sid": ""
-        }
-    ]
-}
-EOF
-}
-
-resource "aws_iam_policy" "policy" {
-  name        = "test-policy"
-  description = "A test policy"
-
-  policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "cloudwatch:PutMetricData",
-                "ds:CreateComputer",
-                "ds:DescribeDirectories",
-                "ec2:DescribeInstanceStatus",
-                "logs:*",
-                "ssm:*",
-                "ec2messages:*"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": "iam:CreateServiceLinkedRole",
-            "Resource": "arn:aws:iam::*:role/aws-service-role/ssm.amazonaws.com/AWSServiceRoleForAmazonSSM*",
-            "Condition": {
-                "StringLike": {
-                    "iam:AWSServiceName": "ssm.amazonaws.com"
-                }
-            }
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "iam:DeleteServiceLinkedRole",
-                "iam:GetServiceLinkedRoleDeletionStatus"
-            ],
-            "Resource": "arn:aws:iam::*:role/aws-service-role/ssm.amazonaws.com/AWSServiceRoleForAmazonSSM*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ssmmessages:CreateControlChannel",
-                "ssmmessages:CreateDataChannel",
-                "ssmmessages:OpenControlChannel",
-                "ssmmessages:OpenDataChannel"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-EOF
-}
-
-resource "aws_iam_role_policy_attachment" "test-attach" {
-  role       = aws_iam_role.role.name
-  policy_arn = aws_iam_policy.policy.arn
-}
+//resource "aws_instance" "pet-clinic-server" {
+//  ami                         = "ami-043097594a7df80ec"
+//  instance_type               = "t2.micro"
+//  subnet_id                   = aws_subnet.petclinic-sn.id
+//  key_name                    = "lab"
+//  vpc_security_group_ids      = [aws_security_group.petclinic-sg.id]
+//  associate_public_ip_address = true
+//  iam_instance_profile        = aws_iam_instance_profile.ec2_ssm_profile.name
+//  user_data                   = data.template_cloudinit_config.config.rendered
+//
+//  tags = {
+//    Name = "pet-clinic"
+//  }
+//}
+//
+//resource "aws_instance" "build-server" {
+//  ami                         = "ami-043097594a7df80ec"
+//  instance_type               = "t2.micro"
+//  subnet_id                   = aws_subnet.petclinic-sn.id
+//  key_name                    = "lab"
+//  vpc_security_group_ids      = [aws_security_group.petclinic-sg.id]
+//  associate_public_ip_address = true
+//  iam_instance_profile        = aws_iam_instance_profile.ec2_ssm_profile.name
+//  user_data                   = data.template_cloudinit_config.config.rendered
+//
+//  tags = {
+//    Name = "build-server"
+//  }
+//}
