@@ -5,7 +5,7 @@ resource "aws_iam_instance_profile" "ec2_ssm_profile" {
 
 resource "aws_iam_role" "ssm-role" {
   name = "ssm-role"
-  path = "/"
+//  path = "/"
 
   assume_role_policy = <<EOF
 {
