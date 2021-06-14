@@ -25,7 +25,7 @@ resource "aws_security_group" "jenkins-elb-sg" {
     from_port   = 443
     protocol    = "tcp"
     to_port     = 443
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["94.179.186.61/32"]
   }
   egress {
     from_port   = 0
@@ -54,6 +54,6 @@ resource "aws_security_group" "web-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "-SG"
+    Name = "Web-SG"
   }
 }
