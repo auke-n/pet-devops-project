@@ -1,14 +1,15 @@
 1st Level:
 ----------------------
 1. TF:
-    ☐ Jenkins server
-    ☐ Build server
-    ☐ Web-server
+    ✔ Jenkins server @done(21-06-13 11:58)
+    ✔ Build server @done(21-06-15 08:03)
+    ✔ Web-server @done(21-06-13 11:58)
 2. Setup Jenkins server Manually:
     ☐ setup server
     ☐ setup pipeline jobs
     ☐ setup build server
     ☐ setup web-server
+    ☐ add EC2 plugin to jenkins
 
 2nd Level:
 1st + :
@@ -22,23 +23,23 @@
 Tasks phase 1:
 ================
 1. Terraform - 3 servers:
-    ☐ free tier
-    ☐ public IP
-    ☐ ALB -> Jenkins
-    ☐ ALB -> web-server: install docker
-    ☐ Jenins slave -> Build server
+    ✔ free tier @done(21-06-13 11:08)
+    ✔ public IP @done(21-06-13 11:08)
+    ✔ ALB -> Jenkins @done(21-06-13 11:08)
+    ✔ ALB -> web-server: install docker @done(21-06-13 11:08)
+    ✔ Jenins slave -> Build server @done(21-06-14 11:14)
     add user_data for servers using terraform (google howto):
-        ☐ yum update
-        ☐ yum install
-                    ☐ Jenkins java-coretto
-                    ☐ jenkis-slave java-coretto docker
-                    ☐ docker
-    ☐ route53 - 2 records to alb
-    ☐ ACM - 2 certificates
+        ✔ yum update @done(21-06-13 11:08)
+        ✔ yum install @done(21-06-14 11:14)
+                    ✔ Jenkins java-coretto @done(21-06-13 10:03)
+                    ✔ jenkis-slave java-coretto docker @done(21-06-14 11:14)
+                    ✔ docker @done(21-06-13 11:07)
+    ✔ route53 - 2 records to alb @done(21-06-13 11:08)
+    ✔ ACM - 2 certificates @done(21-06-13 11:08)
 
 *2. VCS - github:
     ✔ application @done(21-06-11 21:32)
     ✔ iac @done(21-06-11 21:32)
     ☐ configuration
-☐ Add CI CD diagramm
-☐ autosave git creds
+✔ Add CI CD diagramm @done(21-06-13 14:34)
+✔ autosave git creds @done(21-06-13 09:26)
