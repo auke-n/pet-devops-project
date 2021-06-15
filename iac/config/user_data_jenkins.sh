@@ -7,7 +7,7 @@ sudo yum update -y
 
 # Java installation
 sudo amazon-linux-extras enable corretto8
-sudo yum install java-1.8.0-amazon-corretto -y
+sudo yum install java-1.8.0-amazon-corretto-devel -y
 
 # Jenkins installation
 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
@@ -19,3 +19,12 @@ systemctl enable jenkins
 
 # Git installation
 sudo yum install git -y
+
+#Create a SWAP-file
+sudo su
+dd if=/dev/zero of=/swapfile count=3072 bs=1MiB
+chmod 600 /swapfile
+mkswap /swapfile
+swapon  /swapfile
+echo "/swapfile   swap    swap    sw  0   0" >> /etc/fstab
+mount -a
