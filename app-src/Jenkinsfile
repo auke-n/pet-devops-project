@@ -15,8 +15,6 @@ pipeline {
       steps{
         dir ('app-src')
         }
-        sh "pwd"
-      }
     }
     stage('Building image') {
       steps{
