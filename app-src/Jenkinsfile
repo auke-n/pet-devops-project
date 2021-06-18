@@ -11,11 +11,11 @@ pipeline {
         git branch: 'main', url: 'https://github.com/auke-n/pet-devops-project'
       }
     }
-    stage('Changing directory') {
-      steps{
-        dir ('app-src')
-        }
-    }
+    // stage('Changing directory') {
+    //   steps{
+    //     dir ('app-src')
+    //     }
+    // }
     stage('Building image') {
       steps{
         script {
