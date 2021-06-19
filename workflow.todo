@@ -43,3 +43,35 @@ Tasks phase 1:
     ☐ configuration
 ✔ Add CI CD diagramm @done(21-06-13 14:34)
 ✔ autosave git creds @done(21-06-13 09:26)
+
+Pipeline:
+    ☐ GitClone
+    ☐ Cd project folder
+    ☐ build maven
+    ☐ docker compose
+    ☐ 
+
+
+    ssh -OPTIONS -p SSH_PORT user@remote_server "docker stop; ;"
+
+    docker run -d -p 80:8080 gerbut/pet-clinic:latest
+
+
+cd app-src/
+sudo docker build . -t gerbut/pet-clinic:1.${BUILD_NUMBER} -t gerbut/pet-clinic:latest
+sudo docker logout
+sudo docker login -u gerbut -p ${PASSWORD}
+#sudo docker push docker.io/gerbut/pet-clinic -a
+sudo docker push docker.io/gerbut/pet-clinic
+echo ${BUILD_NUMBER}
+
+#ssh ec2-user@192.168.1.244 "sudo docker rm -f web"
+
+#ssh ec2-user@192.168.1.244 "sudo docker run -d --name web -p 80:8080 gerbut/pet-clinic:latest"
+
+
+aws s3 cp /var/lib/jenkins s3://brso/jenkins.bk/ --recursive
+aws s3 cp s3://brso/jenkins.bk /var/lib/jenkins  --recursive
+chown jenkins:jenkins -R /var/lib/jenkins
+
+echo "jenkins ALL=(ALL)       NOPASSWD: ALL" >> 

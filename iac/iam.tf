@@ -1,11 +1,11 @@
-resource "aws_iam_instance_profile" "ec2_ssm_profile" {
-  name = "ec2_ssm_profile"
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "ec2_profile"
   role = aws_iam_role.ssm-role.name
 }
 
 resource "aws_iam_role" "ssm-role" {
-  name = "ssm-role"
-//  path = "/"
+  name = "ec2-role"
+  //  path = "/"
 
   assume_role_policy = <<EOF
 {
@@ -25,13 +25,18 @@ EOF
 }
 
 resource "aws_iam_policy" "policy" {
-  name        = "ssm-policy"
-  description = "ssm-policy"
+  name        = "ec2-ssm-policy"
+  description = "ec2-ssm-policy"
 
   policy = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
+        {
+              "Effect": "Allow",
+              "Action": "s3:*",
+              "Resource": "*"
+          },
         {
             "Effect": "Allow",
             "Action": [

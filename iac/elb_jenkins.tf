@@ -54,7 +54,7 @@ resource "aws_lb" "web-server-lb" {
   name               = "web-server-lb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.web-sg.id]
+  security_groups    = [aws_security_group.web-elb-sg.id]
   subnets            = [aws_subnet.subnet_pbl1.id, aws_subnet.subnet_pbl2.id]
   tags = {
     Name = "Web-server-ALB"
@@ -63,7 +63,7 @@ resource "aws_lb" "web-server-lb" {
 
 resource "aws_lb_target_group" "web-server-lb-tg" {
   name        = "app-lb-tg"
-  port        = 8080
+  port        = 80
   target_type = "instance"
   vpc_id      = aws_vpc.devops_lab_final.id
   protocol    = "HTTP"
@@ -71,7 +71,7 @@ resource "aws_lb_target_group" "web-server-lb-tg" {
     enabled  = true
     interval = 10
     path     = "/login"
-    port     = 8080
+    port     = 80
     protocol = "HTTP"
     matcher  = "200-299"
   }
@@ -83,7 +83,7 @@ resource "aws_lb_target_group" "web-server-lb-tg" {
 resource "aws_lb_target_group_attachment" "web-server-attach" {
   target_group_arn = aws_lb_target_group.web-server-lb-tg.arn
   target_id        = aws_instance.web-server.id
-  port             = 8080
+  port             = 80
 }
 
 resource "aws_lb_listener" "web-server-listener-https" {
