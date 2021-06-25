@@ -1,5 +1,5 @@
 FROM adoptopenjdk/openjdk11:alpine
 EXPOSE 8080
-ARG JAR=spring-petclinic-2.4.5.jar
+ARG JAR=spring-petclinic-2.4.6.jar
 COPY target/$JAR /app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
