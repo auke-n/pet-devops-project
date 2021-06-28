@@ -84,28 +84,8 @@ resource "aws_security_group" "web-ec2-sg" {
   }
 }
 
-//resource "aws_security_group" "build-sg" {
-//  name   = "build-SG"
-//  vpc_id = aws_vpc.devops_lab_final.id
-//  ingress {
-//    from_port       = 22
-//    protocol        = "tcp"
-//    to_port         = 22
-//    security_groups = [aws_security_group.jenkins-ec2-sg.id]
-//  }
-//  egress {
-//    from_port   = 0
-//    protocol    = "-1"
-//    to_port     = 0
-//    cidr_blocks = ["0.0.0.0/0"]
-//  }
-//  tags = {
-//    Name = "Build-SG"
-//  }
-//}
-
-/*resource "aws_security_group" "build-sg" {
-  name   = "build-sg"
+resource "aws_security_group" "build-sg" {
+  name   = "build-SG"
   vpc_id = aws_vpc.devops_lab_final.id
   ingress {
     from_port       = 22
@@ -115,12 +95,12 @@ resource "aws_security_group" "web-ec2-sg" {
   }
   egress {
     from_port   = 0
-    to_port     = 0
     protocol    = "-1"
+    to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
-
   tags = {
-    Name = "build-sg"
+    Name = "Build-SG"
   }
-}*/
+}
+
