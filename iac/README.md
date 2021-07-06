@@ -38,3 +38,6 @@ https://github.com/auke-n/spring-petclinic
   <li>Application Load Balancer</li>
   <li>Route53 for DNS records and ACM for SSL certificate</li>
  </ul>
+ 
+ ![image](https://user-images.githubusercontent.com/43706100/124558269-174c8d00-de43-11eb-8b10-a9132b019f5d.png)
+
