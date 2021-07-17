@@ -13,7 +13,7 @@
 
 - name: download jenkins.repo
   get_url:
-    url: https://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+    url: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
     dest: /etc/yum.repos.d/jenkins.repo
 
 - name: import jenkins key
